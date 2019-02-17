@@ -1,6 +1,9 @@
+import java.util.concurrent.CountDownLatch;
+
 public class Main {
     public static final int CARS_COUNT = 4;
     public static Car[] cars = new Car[CARS_COUNT];
+    static final CountDownLatch cdl = new CountDownLatch(CARS_COUNT);
 
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
@@ -14,8 +17,13 @@ public class Main {
 
         for (int i = 0; i < cars.length; i++) {
             new Thread(cars[i]).start();
+//            cdl.countDown();
         }
-
+        try {
+            cdl.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
