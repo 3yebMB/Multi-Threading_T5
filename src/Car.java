@@ -27,6 +27,11 @@ public class Car implements Runnable {
             System.out.println(this.name + " готовится");
             Thread.sleep(500 + (int)(Math.random() * 800));
             System.out.println(this.name + " готов");
+            Main.aboo.set(true);
+            Main.cdl2.countDown();
+            Main.cdl2.await();
+            if (Main.aboo.compareAndSet(true, false))
+                System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
