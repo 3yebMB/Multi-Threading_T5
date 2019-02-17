@@ -1,6 +1,7 @@
 public class Tunnel extends Stage {
-    public Tunnel() {
-        this.length = 80;
+    private int lenght;
+    public Tunnel(int lenght) {
+        this.length = lenght;
         this.description = "Тоннель " + length + " метров";
     }
     @Override
