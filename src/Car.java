@@ -1,4 +1,7 @@
+import java.util.concurrent.Semaphore;
+
 public class Car implements Runnable {
+    static Semaphore smp = new Semaphore(Main.cars.length/2);
     private static int CARS_COUNT;
     static {
         CARS_COUNT = 0;
@@ -27,6 +30,7 @@ public class Car implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
